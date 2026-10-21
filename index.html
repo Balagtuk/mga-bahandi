@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>For You, My Love ♡ — Happy Anniversary</title>
+  <meta name="description"
+    content="A little interactive love letter: open the envelope to discover a bouquet of flowers and a collection of our favorite memories." />
+  <meta name="theme-color" content="#fbf3ec" />
+  <meta name="robots" content="noindex" />
+
+  <!-- Fonts: elegant serif + handwritten script + soft sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+
+  <link rel="preload" as="image" href="assets/bouquet.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="is-intro">
+
+  <!-- Soft background atmosphere (purely decorative) -->
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__blob ambient__blob--1"></span>
+    <span class="ambient__blob ambient__blob--2"></span>
+    <span class="ambient__blob ambient__blob--3"></span>
+  </div>
+
+  <!-- Decorative layers: petals always sit BEHIND content and never take clicks -->
+  <div class="fx-layer" id="petal-layer" aria-hidden="true"></div>
+  <div class="fx-layer fx-layer--burst" id="burst-layer" aria-hidden="true"></div>
+
+  <!-- =====================================================================
+       1. OPENING SCREEN — closed envelope
+       ===================================================================== -->
+  <section class="intro" id="intro" aria-label="A surprise envelope">
+    <div class="intro__sparkles" id="intro-sparkles" aria-hidden="true"></div>
+
+    <div class="intro__content">
+      <button class="envelope" id="envelope" type="button" aria-describedby="intro-hint">
+        <span class="visually-hidden">Open your surprise envelope</span>
+        <span class="envelope__body" aria-hidden="true">
+          <span class="envelope__back"></span>
+          <span class="envelope__letter">
+            <span class="envelope__letter-heart"></span>
+            <span class="envelope__letter-text" data-config="intro.letter">Happy Anniversary</span>
+          </span>
+          <span class="envelope__pocket"></span>
+          <span class="envelope__flap"></span>
+          <span class="envelope__seal">
+            <span class="seal-half seal-half--left"></span>
+            <span class="seal-half seal-half--right"></span>
+          </span>
+        </span>
+        <span class="envelope__shadow" aria-hidden="true"></span>
+      </button>
+
+      <p class="intro__lead" data-config="intro.lead">A little something for you, my love...</p>
+      <p class="intro__hint" id="intro-hint" data-config="intro.hint">Click to open your surprise ♡</p>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       2. MAIN EXPERIENCE — bouquet + memory carousel
+       ===================================================================== -->
+  <main class="main" id="main" inert>
+    <p class="main__overline" data-config="hero.overline">Happy Anniversary</p>
+
+    <section class="stage" id="stage" aria-labelledby="main-title">
+      <!-- 3D Orbit Stage: Centerpiece bouquet encircled by orbiting memory cards -->
+      <div class="carousel" id="carousel" role="region"
+        aria-label="Our memories — use the arrow keys or the buttons below to browse">
+        <figure class="bouquet" id="bouquet" aria-hidden="true">
+          <img class="bouquet__img" id="bouquet-img" src="assets/bouquet.png"
+            alt="A magnificent luxury bouquet of pink oriental lilies, roses, and baby's breath wrapped in coral-pink flared paper with flowing ribbon streamers"
+            width="678" height="754" decoding="async" fetchpriority="high" />
+        </figure>
+      </div>
+
+      <div class="message">
+        <h1 class="message__title" id="main-title" tabindex="-1" data-config="hero.title">Para sa akong pinalanggang tao
+          ♡</h1>
+        <p class="message__subtitle" data-config="hero.subtitle">Kanunay, karon, puhon kanimo ra ko
+          Mupahuway</p>
+
+        <!-- Real-time counter from October 22, 2017 -->
+        <div class="love-counter" id="love-counter" role="timer" aria-label="Time spent together">
+          <p class="love-counter__caption" data-config="counter.caption">Loving you for</p>
+          <div class="love-counter__grid">
+            <div class="counter-box">
+              <span class="counter-box__num" id="counter-days">0</span>
+              <span class="counter-box__label">Days</span>
+            </div>
+            <span class="counter-sep" aria-hidden="true">:</span>
+            <div class="counter-box">
+              <span class="counter-box__num" id="counter-hours">00</span>
+              <span class="counter-box__label">Hours</span>
+            </div>
+            <span class="counter-sep" aria-hidden="true">:</span>
+            <div class="counter-box">
+              <span class="counter-box__num" id="counter-minutes">00</span>
+              <span class="counter-box__label">Minutes</span>
+            </div>
+            <span class="counter-sep" aria-hidden="true">:</span>
+            <div class="counter-box">
+              <span class="counter-box__num" id="counter-seconds">00</span>
+              <span class="counter-box__label">Seconds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-controls" id="carousel-controls">
+        <button class="round-btn" id="carousel-prev" type="button" aria-label="Previous memory">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15 5l-7 7 7 7" />
+          </svg>
+        </button>
+        <div class="carousel-pill" id="carousel-pill" aria-live="polite">
+          <span class="carousel-pill__label">Memory</span>
+          <span class="carousel-pill__num" id="carousel-current">1</span>
+          <span class="carousel-pill__sep">of</span>
+          <span class="carousel-pill__total" id="carousel-total">68</span>
+        </div>
+        <div class="carousel-dots" id="carousel-dots" role="group" aria-label="Choose a memory"></div>
+        <button class="round-btn" id="carousel-next" type="button" aria-label="Next memory">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+      <p class="carousel-hint" data-config="hero.hint">Tap a photo to open a memory</p>
+    </section>
+
+    <!-- <footer class="footer">
+      <p data-config="footer">Made with love, just for you.</p>
+    </footer> -->
+  </main>
+
+  <!-- Romantic music player widget (shows when audio is available) -->
+  <aside class="music-player" id="music-player" aria-label="Music player" hidden>
+    <button class="music-toggle" id="music-toggle" type="button" aria-pressed="false" aria-label="Play music">
+      <span class="music-toggle__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="music-toggle__info">
+        <span class="music-toggle__status" id="music-status">Play</span>
+        <span class="music-toggle__title" id="music-title">Bahandi</span>
+      </span>
+    </button>
+    <button class="music-skip" id="music-skip" type="button" aria-label="Next song" title="Next song">
+      <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" fill="currentColor" />
+      </svg>
+    </button>
+  </aside>
+
+  <!-- =====================================================================
+       3. MEMORY DIALOG — two columns on desktop, stacked on mobile
+       ===================================================================== -->
+  <dialog class="memory-dialog" id="memory-dialog" closedby="any" aria-labelledby="dialog-title"
+    aria-describedby="dialog-message">
+    <article class="memory-dialog__card">
+      <button class="memory-dialog__close round-btn" id="dialog-close" type="button" aria-label="Close memory">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+
+      <figure class="memory-dialog__media">
+        <img id="dialog-image" src="" alt="" />
+        <video id="dialog-video" class="memory-dialog__video" playsinline controls loop hidden></video>
+      </figure>
+
+      <div class="memory-dialog__body">
+        <div class="memory-dialog__text" id="dialog-text">
+          <p class="memory-dialog__date" id="dialog-date"></p>
+          <h2 class="memory-dialog__title" id="dialog-title"></h2>
+          <span class="memory-dialog__divider" aria-hidden="true"></span>
+          <p class="memory-dialog__message" id="dialog-message"></p>
+        </div>
+
+        <nav class="memory-dialog__nav" aria-label="Memory navigation">
+          <button class="round-btn" id="dialog-prev" type="button" aria-label="Previous memory">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 5l-7 7 7 7" />
+            </svg>
+          </button>
+          <span class="memory-dialog__counter" id="dialog-counter" aria-live="polite"></span>
+          <button class="round-btn" id="dialog-next" type="button" aria-label="Next memory">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </nav>
+      </div>
+    </article>
+  </dialog>
+
+  <noscript>
+    <p class="noscript">This little surprise needs JavaScript turned on to open. ♡</p>
+  </noscript>
+
+  <script src="js/config.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
